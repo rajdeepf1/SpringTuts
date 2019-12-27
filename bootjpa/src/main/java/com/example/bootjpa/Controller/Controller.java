@@ -2,6 +2,8 @@ package com.example.bootjpa.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.bootjpa.dao.AlienRepo;
 import com.example.bootjpa.model.AlienModel;
@@ -21,6 +23,20 @@ public class Controller {
 	public String addAlien(AlienModel model) {
 		repo.save(model);
 		return "home.jsp";
+	}
+	
+	@RequestMapping("/getAlien")
+	public ModelAndView getAlien(@RequestParam int aid) {
+		
+		ModelAndView modelAndView = new ModelAndView("showAlien.jsp");
+		
+		AlienModel alien = repo.findById(aid).orElse(new AlienModel());
+		
+		System.out.println(alien.getAname());
+		
+		modelAndView.addObject("obj",alien);
+		
+		return modelAndView;
 	}
 	
 }

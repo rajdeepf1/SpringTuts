@@ -18,16 +18,40 @@
 <div class="container">
 
 <form action="addAlien">
+
   <div class="form-group row">
     <label for="alienId" class="col-sm-2 col-form-label">Alien Id :</label>
     <div class="col-sm-3">
       <input type="text"  class="form-control" id="alienId" name="aid">
     </div>
   </div>
+  
   <div class="form-group row">
     <label for="alienName" class="col-sm-2 col-form-label">Alien Name :</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" id="alienName" name="aname">
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="tech" class="col-sm-2 col-form-label">Tech :</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="tech" name="tech">
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+  
+</form>
+
+<br> <br>
+
+<form action="getAlien">
+
+  <div class="form-group row">
+    <label for="getAlien" class="col-sm-2 col-form-label">Enter Alien Id :</label>
+    <div class="col-sm-3">
+      <input type="text"  class="form-control" id="getAlien" name="aid">
     </div>
   </div>
   
