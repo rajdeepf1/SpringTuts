@@ -43,7 +43,7 @@ public class Controller {
 	public ModelAndView home(@RequestParam("name")String myName) { // ModelAndView is for passing data to ur jsp page
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("nameKey",myName);
+		modelAndView.addObject("name",myName);
 		modelAndView.setViewName("home");
 		
 		return modelAndView;
