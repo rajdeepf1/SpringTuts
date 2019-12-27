@@ -1,0 +1,11 @@
+package com.example.MyWebApp;
+
+public class AlienModel {
+	
+	private int aID;
+	
+	private String alienName;
+
+	private String alienLang;
+
+}

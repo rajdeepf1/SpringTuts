@@ -10,7 +10,7 @@
 <h1>Hi Spring Boot</h1>
 
 welcome ${nameKey}
-<br>
+
 welcome ${obj.aID} , ${obj.alienName } , ${obj.alienLang }
 
 </body>

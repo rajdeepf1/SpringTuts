@@ -39,22 +39,11 @@ public class Controller {
 //	}
 	
 	
-//	@RequestMapping("home")
-//	public ModelAndView home(@RequestParam("name")String myName) { // ModelAndView is for passing data to ur jsp page
-//		
-//		ModelAndView modelAndView = new ModelAndView();
-//		modelAndView.addObject("nameKey",myName);
-//		modelAndView.setViewName("home");
-//		
-//		return modelAndView;
-//	}
-	
-	
 	@RequestMapping("home")
-	public ModelAndView home(AlienModel alienModel) { // passing data to jsp page using model class i.e. AlienModel {url= http://localhost:8080/home?aID=1&alienName=Rajdeep&alienLang=Java}
+	public ModelAndView home(@RequestParam("name")String myName) { // ModelAndView is for passing data to ur jsp page
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("obj",alienModel);
+		modelAndView.addObject("nameKey",myName);
 		modelAndView.setViewName("home");
 		
 		return modelAndView;

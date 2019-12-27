@@ -51,7 +51,7 @@ public class Controller {
 	
 	
 	@RequestMapping("home")
-	public ModelAndView home(AlienModel alienModel) { // passing data to jsp page using model class i.e. AlienModel {url= http://localhost:8080/home?aID=1&alienName=Rajdeep&alienLang=Java}
+	public ModelAndView home(AlienModel alienModel) { // passing data to jsp using model class i.e. AlienModel {url= http://localhost:8080/home?aID=1&alienName=Rajdeep&alienLang=Java}
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("obj",alienModel);
