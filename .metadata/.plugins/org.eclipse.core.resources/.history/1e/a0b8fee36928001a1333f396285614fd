@@ -27,7 +27,7 @@ public class Controller {
 	
 	
 	@RequestMapping("home")
-	public String home(@RequestParam("name")String myName, HttpSession session) { // @RequestParam is for mapping keys from url (used for multiple params)
+	public String home(@RequestParam("name")String myName, HttpSession session) { // @RequestParam is for mapping keys from url
 		
 		
 		System.out.println("hi..."+myName);
