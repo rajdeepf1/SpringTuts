@@ -3,15 +3,21 @@ package com.example.bootjpa_mysql.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bootjpa_mysql.dao.UserRepository;
 import com.example.bootjpa_mysql.models.User;
 
-@Controller // This means that this class is a Controller
+@Controller // This means that this class is a Controller and also to handle RestApi and views
+
+//@RestController is for only RestApi 
+
 @RequestMapping(path="/demo") // This means URL's start with /demo (after Application path)
 public class MainController {
   @Autowired // This means to get the bean called userRepository
@@ -36,6 +42,42 @@ public class MainController {
     // This returns a JSON or XML with the users
     return userRepository.findAll();
   }
+  
+  
+  @GetMapping(path="/getAllUsersUsingQuery/{name}")
+  public @ResponseBody Iterable<User> getAllUsersUsingQuery(@PathVariable String name) {
+    // This returns a JSON or XML with the users
+    return userRepository.findAllUserByQuery(name.toLowerCase().trim());
+  }
+  
+  //getting data using @RequestParam (do not expose on url !!!!!!!!)
+//  @GetMapping(path="/getAllUsersUsingQuery")
+//  public @ResponseBody Iterable<User> getAllUsersUsingQuery(@RequestParam String name) {
+//    // This returns a JSON or XML with the users
+//    return userRepository.findAllUserByQuery(name.toLowerCase().trim());
+//  }
+  
+  
+	
+ //getting data using @RequestParam (do not expose on url !!!!!!!!) and update email by name
+  //  this method return int value (1) if any row affected
+// @GetMapping(path="/updateEmailByName") // get method used here 
+// public @ResponseBody int updateEmailByName(@RequestParam String name , @RequestParam String email) {
+//// This returns a JSON or XML with the users return
+//	 userRepository.updateEmailByName(email, name); 
+// }
+	 
+  
+  
+//getting data using @RequestParam (do not expose on url !!!!!!!!) and update email by name
+@PutMapping(path="/updateEmailByName")
+public @ResponseBody int updateEmailByName(@RequestParam String name , @RequestParam String email) {
+  // This returns a JSON or XML with the users
+	
+  return userRepository.updateEmailByName(email, name);
+}
+  
+  
 }
 
 // https://spring.io/guides/gs/accessing-data-mysql/
