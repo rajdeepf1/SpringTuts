@@ -28,6 +28,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(value = "UPDATE user  set email = ?1 WHERE name = ?2",nativeQuery = true)
 	int updateEmailByName(String email,String name);
 	
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM user WHERE id = :id",nativeQuery = true)
+	int deleteDataById(int id);
+	
 	
 }
-

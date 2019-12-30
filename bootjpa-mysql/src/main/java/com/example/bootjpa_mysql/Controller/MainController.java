@@ -2,6 +2,7 @@ package com.example.bootjpa_mysql.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,7 +58,7 @@ public class MainController {
 //    return userRepository.findAllUserByQuery(name.toLowerCase().trim());
 //  }
   
-  
+  																																																																										
 	
  //getting data using @RequestParam (do not expose on url !!!!!!!!) and update email by name
   //  this method return int value (1) if any row affected
@@ -75,6 +76,12 @@ public @ResponseBody int updateEmailByName(@RequestParam String name , @RequestP
   // This returns a JSON or XML with the users
 	
   return userRepository.updateEmailByName(email, name);
+}
+
+
+@DeleteMapping(path = "/deleteData")
+public @ResponseBody int deleteData(@RequestParam int id) {
+	return userRepository.deleteDataById(id);
 }
   
   
