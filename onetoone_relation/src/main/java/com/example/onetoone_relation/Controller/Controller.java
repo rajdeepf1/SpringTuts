@@ -41,6 +41,7 @@ public class Controller {
     }
 
 
+
     @PutMapping(value = "/update/{id}")
     public List<UsersContact> updateData(@RequestParam Integer phoneNo,@RequestParam String name,@RequestParam Integer salary,@RequestParam String teamName){
 
