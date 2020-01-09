@@ -3,17 +3,16 @@ package com.dashscan.datacapture1.Models;
 public class ScanDataResponseModel {
 
     private boolean status;
-    private ScanDataModel response;
-
     private String message;
+    private ScanDataModel response;
 
     public ScanDataResponseModel() {
     }
 
     public ScanDataResponseModel(boolean status, ScanDataModel response, String message) {
         this.status = status;
-        this.response = response;
         this.message = message;
+        this.response = response;
     }
 
     public boolean isStatus() {
@@ -24,6 +23,14 @@ public class ScanDataResponseModel {
         this.status = status;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public ScanDataModel getResponse() {
         return response;
     }
@@ -32,11 +39,5 @@ public class ScanDataResponseModel {
         this.response = response;
     }
 
-    public String getMessage() {
-        return message;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
