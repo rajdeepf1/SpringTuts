@@ -1,6 +1,7 @@
 package com.dashscan.datacapture1.Controller;
 
 import com.dashscan.datacapture1.Dao.ScanDataRepository;
+import com.dashscan.datacapture1.Models.ScanDataListResponseModel;
 import com.dashscan.datacapture1.Models.ScanDataModel;
 import com.dashscan.datacapture1.Models.ScanDataResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +62,29 @@ public class Controller {
     }
 
     @GetMapping("/getAllScannedData")
-    public ResponseEntity<List<ScanDataModel>> getAllScannedData(){
-        return ResponseEntity.ok(repository.findAll());
+    public ScanDataListResponseModel getAllScannedData(){
+
+        List<ScanDataModel> list = repository.findAll();
+
+        if (list == null && list.size() < 0){
+
+            ScanDataListResponseModel model = new ScanDataListResponseModel();
+
+            model.setStatus(false);
+            model.setMessage("No Data Found!");
+            model.setList(null);
+
+            return model;
+        }else {
+
+            ScanDataListResponseModel model = new ScanDataListResponseModel();
+
+            model.setStatus(true);
+            model.setMessage("Data Found!"+" count is : "+list.size());
+            model.setList(list);
+
+            return model;
+        }
     }
 
     @GetMapping("/getAllScannedDataByScanData")
