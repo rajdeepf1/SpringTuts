@@ -1,25 +1,37 @@
 package com.example.onetoone_relation.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users_contact",catalog = "one_to_one_relation")
+@Table(name = "users_contact")
 public class UsersContact {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // this line automatically generates auto inc. id and pk
+//    @GeneratedValue(strategy = GenerationType.AUTO) // this line automatically generates auto inc. id and pk
     @Column(name = "id")
     private Integer id;
+
+    @Column(name = "phoneNo")
     private  Integer phoneNo;
 
-    @OneToOne(cascade = CascadeType.ALL) // try to update users table
-    @JoinColumn(name = "id",referencedColumnName = "user_id")
-    private Users users;
+    @Column(name = "address")
+    private String address;
 
+    @OneToOne
+    @MapsId
+    @JsonBackReference
+    private Users users;
 
     public UsersContact() {
     }
 
+    public UsersContact(Integer phoneNo, String address) {
+        this.phoneNo = phoneNo;
+        this.address = address;
+    }
 
     public Integer getId() {
         return id;
@@ -37,6 +49,13 @@ public class UsersContact {
         this.phoneNo = phoneNo;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Users getUsers() {
         return users;
@@ -45,5 +64,4 @@ public class UsersContact {
     public void setUsers(Users users) {
         this.users = users;
     }
-
 }

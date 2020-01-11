@@ -1,9 +1,12 @@
 package com.example.onetoone_relation.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users", catalog = "one_to_one_relation")
+@Table(name = "users")
 public class Users {
 
     @Id
@@ -11,17 +14,19 @@ public class Users {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "userName")
+    private String userName;
 
-    private Integer salary;
-
-    private String teamName;
-
-    @Column(name = "user_id")
-    private Integer user_Id;
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private UsersContact usersContact;
 
     public Users() {
+    }
+
+
+    public Users(String userName) {
+        this.userName = userName;
     }
 
     public Integer getId() {
@@ -32,38 +37,19 @@ public class Users {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public Integer getSalary() {
-        return salary;
+    public UsersContact getUsersContact() {
+        return usersContact;
     }
 
-    public void setSalary(Integer salary) {
-        this.salary = salary;
+    public void setUsersContact(UsersContact usersContact) {
+        this.usersContact = usersContact;
     }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-
-    public Integer getUser_Id() {
-        return user_Id;
-    }
-
-    public void setUser_Id(Integer user_Id) {
-        this.user_Id = user_Id;
-    }
-
-
 }
