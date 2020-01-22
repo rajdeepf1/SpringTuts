@@ -105,14 +105,14 @@ public class Controller {
 
         Pageable paging = PageRequest.of(pageNo, 10 /*,Sort.by(sortBy)*/, Sort.Direction.ASC,"id");
 
-        List<?> list = Collections.singletonList(repository.findAll(paging));
+        Page<ScanDataModel> pageData = repository.findAll(paging);
 
         ScanDataListResponseModel model = new ScanDataListResponseModel();
 
-        if (list.size() != 0){
+        if (!pageData.isEmpty()){
             model.setStatus(true);
-            model.setMessage("Success");
-            model.setList((List<ScanDataModel>) list);
+            model.setMessage("success, total pages is :"+pageData.getTotalPages());
+            model.setList(pageData.getContent());
             return model;
         }else {
             model.setStatus(false);

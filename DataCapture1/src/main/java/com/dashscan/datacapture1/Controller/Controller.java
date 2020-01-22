@@ -5,9 +5,14 @@ import com.dashscan.datacapture1.Models.ScanDataListResponseModel;
 import com.dashscan.datacapture1.Models.ScanDataModel;
 import com.dashscan.datacapture1.Models.ScanDataResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,5 +96,31 @@ public class Controller {
     public ResponseEntity<List<ScanDataModel>> getAllScannedDataByScanData(@RequestParam String scanData){
         return ResponseEntity.ok(repository.findAllByScanData(scanData));
     }
+
+
+
+    @GetMapping("/getAllScannedDataByPagination/{pageNo}")
+    public ScanDataListResponseModel getAllScannedDataByPagination(@PathVariable int pageNo){
+
+        Pageable paging = PageRequest.of(pageNo, 10 /*,Sort.by(sortBy)*/, Sort.Direction.ASC,"id");
+
+        Page<ScanDataModel> pageData = repository.findAll(paging);
+
+        ScanDataListResponseModel model = new ScanDataListResponseModel();
+
+        if (!pageData.isEmpty()){
+            model.setStatus(true);
+            model.setMessage("success, total pages is :"+pageData.getTotalPages());
+            model.setList(pageData.getContent());
+            return model;
+        }else {
+            model.setStatus(false);
+            model.setMessage("No Data Found !");
+            model.setList(null);
+            return model;
+        }
+
+    }
+
 
 }
