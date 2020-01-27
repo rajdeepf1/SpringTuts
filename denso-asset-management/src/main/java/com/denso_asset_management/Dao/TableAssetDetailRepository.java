@@ -1,6 +1,5 @@
 package com.denso_asset_management.Dao;
 import com.denso_asset_management.Models.TableAssetDetailModel;
-import com.denso_asset_management.Models.TableAssetDetailModelTest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
