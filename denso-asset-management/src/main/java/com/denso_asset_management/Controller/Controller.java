@@ -31,10 +31,24 @@ public class Controller {
     }
 
 
+    @GetMapping("/getData/{AssetTagNo}")
+    public List<TableAssetDetailModel> getDataByAssetTagNo(@PathVariable int AssetTagNo){
+        return tableAssetDetailRepository.findScanDataByAssetTagNo(AssetTagNo);
+    }
+
+
     @PostMapping("/insertData")
     public TBLSCANMASTERModel insertdata(@RequestBody TBLSCANMASTERModel data){
 
         System.out.println("We Get Values__"+data.toString());
+
+       /* List<TableAssetDetailModel> a = getDataByAssetTagNo(16072);
+
+        for (TableAssetDetailModel val: a) {
+            logger.info(val.getAssetName());
+        }
+
+        logger.info("sizeChk",a.size());*/
 
         return data;
     }

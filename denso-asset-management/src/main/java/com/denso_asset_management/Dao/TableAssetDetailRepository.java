@@ -12,4 +12,8 @@ public interface TableAssetDetailRepository extends JpaRepository<TableAssetDeta
             nativeQuery = true)
     List<TableAssetDetailModel> findAllData();
 
+    @Query(value = "select * from tblAssetDetail where AssetTagNo = :AssetTagNo",
+            nativeQuery = true)
+    List<TableAssetDetailModel> findScanDataByAssetTagNo(int AssetTagNo);
+
 }
